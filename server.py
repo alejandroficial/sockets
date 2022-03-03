@@ -1,6 +1,6 @@
 import socket,threading
 
-class chat():
+class chat_server():
     def __init__(self):
         self.s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.connections=[]
@@ -8,7 +8,9 @@ class chat():
     def listen_client(self,conn,addr):
         while True:
             data=conn.recv(2048)
-            print(data.decode("UTF-8"))
+            msg=data.decode("UTF-8")
+            self.send_to_clients(data)
+            print(msg)
 
     def send_to_clients(self,msg):
         for conn in self.connections:
@@ -22,4 +24,4 @@ class chat():
             self.connections.append(conn)
             threading.Thread(target=self.listen_client,args=(conn,addr,)).start()
 
-chat().run()
+chat_server().run()
