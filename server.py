@@ -17,7 +17,7 @@ class chat_server():
             conn.send(msg)
 
     def run(self):
-        self.s.bind(("192.168.1.21",4576))
+        self.s.bind(("172.16.206.5",4576))
         self.s.listen(5)
         while True:
             conn,addr=self.s.accept()

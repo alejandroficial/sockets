@@ -6,7 +6,7 @@ class chat_client():
         self.username=username
     
     def run(self):
-        self.s.connect(("192.168.1.21",4576))
+        self.s.connect(("172.16.206.5",4576))
         threading.Thread(target=self.send_messages).start()
         threading.Thread(target=self.listen_server).start()
 
